@@ -1,40 +1,40 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
+// receipt param is removed because it is not included in the Transaction type
 export const GetAllTransactions = gql`
-  query GetAllTransactions {
-    getAllTransactions {
-      gasLimit
-      gasPrice
-      to
-      from
-      value
-      data
-      chainId
-      hash
-      receipt
+    query GetAllTransactions {
+        getAllTransactions {
+            gasLimit
+            gasPrice
+            to
+            from
+            value
+            data
+            chainId
+            hash
+        }
     }
-  }
 `;
 
 export const GetSingleTransaction = gql`
-  query GetSingleTransaction($hash: String!) {
-    getTransaction(hash: $hash) {
-      gasLimit
-      gasPrice
-      to
-      from
-      value
-      data
-      chainId
-      hash
+    query GetSingleTransaction($hash: String!) {
+        getTransaction(hash: $hash) {
+            gasLimit
+            gasPrice
+            to
+            from
+            value
+            data
+            chainId
+            hash
+        }
     }
-  }
 `;
 
 export const SaveTransaction = gql`
-  mutation SaveTransaction($transaction: TransactionInput!) {
-    addTransaction(transaction: $transaction) {
-      hash
+    mutation SaveTransaction($transaction: TransactionInput!) {
+        addTransaction(transaction: $transaction) {
+            hash
+        }
     }
-  }
 `;
