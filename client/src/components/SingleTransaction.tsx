@@ -71,7 +71,7 @@ const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
                     </p>
                     <p>
                         <span className="font-bold">Amount:</span>{" "}
-                        {value && formatEther(value)} ETH
+                        {value && Number(formatEther(value)).toFixed(8)} ETH
                     </p>
                 </div>
             </div>

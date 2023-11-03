@@ -13,14 +13,11 @@ const TransactionList: React.FC = () => {
 
     useEffect(() => {
         if (data && data.getAllTransactions) {
-            console.log("data", data);
             setTransactions(data.getAllTransactions);
         }
     }, [data]);
 
     const handleNavigate = (hash: string) => navigate(`/transaction/${hash}`);
-
-    console.log("transactions", transactions);
 
     if (loading) {
         return (
@@ -55,7 +52,8 @@ const TransactionList: React.FC = () => {
                                     onClick={() => handleNavigate(hash)}
                                 >
                                     <span className="font-bold">
-                                        {formatEther(value)} ETH
+                                        {Number(formatEther(value)).toFixed(8)}{" "}
+                                        ETH
                                     </span>{" "}
                                     sent from{" "}
                                     <span className="font-bold">{from}</span> to{" "}
