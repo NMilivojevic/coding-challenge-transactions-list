@@ -24,6 +24,7 @@ export type Action<P> = {
 
 export enum Actions {
     SendTransaction = "SEND_TRANSACTION",
+    TriggerTransactionListRefetch = "TRIGGER_TRANSACTION_LIST_REFETCH",
     TransactionSuccess = "TRANSACTION_SUCCESS",
     TransactionFailure = "TRANSACTION_FAILURE",
 }

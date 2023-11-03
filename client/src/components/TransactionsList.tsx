@@ -13,11 +13,14 @@ const TransactionList: React.FC = () => {
 
     useEffect(() => {
         if (data && data.getAllTransactions) {
+            console.log("data", data);
             setTransactions(data.getAllTransactions);
         }
     }, [data]);
 
     const handleNavigate = (hash: string) => navigate(`/transaction/${hash}`);
+
+    console.log("transactions", transactions);
 
     if (loading) {
         return (

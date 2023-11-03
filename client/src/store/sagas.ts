@@ -9,7 +9,7 @@ import {
 
 import apolloClient from "../apollo/client";
 import { Actions } from "../types";
-import { SaveTransaction } from "../queries";
+import { GetAllTransactions, SaveTransaction } from "../queries";
 import { navigate } from "../components/NaiveRouter";
 
 function* sendTransaction(action: {
@@ -61,6 +61,9 @@ function* sendTransaction(action: {
         // Dispatch a success action
         yield put({ type: Actions.TransactionSuccess });
 
+        // Dispatch a custom action to trigger transaction list refetch
+        yield put({ type: Actions.TriggerTransactionListRefetch });
+
         // Navigate to the transaction details page
         navigate(`/transaction/${receipt.hash}`);
     } catch (error) {
@@ -72,6 +75,18 @@ function* sendTransaction(action: {
     }
 }
 
+function* triggerTransactionListRefetch() {
+    // Trigger the refetch of the transaction list data
+    yield apolloClient.query({
+        query: GetAllTransactions,
+        fetchPolicy: "network-only", // Force a network request to fetch the latest data
+    });
+}
+
 export function* rootSaga() {
     yield takeEvery(Actions.SendTransaction, sendTransaction);
+    yield takeEvery(
+        Actions.TriggerTransactionListRefetch,
+        triggerTransactionListRefetch
+    );
 }

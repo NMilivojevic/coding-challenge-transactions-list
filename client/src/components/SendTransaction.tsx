@@ -27,7 +27,7 @@ const SendTransaction: React.FC<{ wallet: WalletState }> = ({ wallet }) => {
             payload: null,
         });
         setShowModal(false);
-        reset();
+        reset({ recipient: "", amount: "" });
     }, [dispatch, reset]);
 
     // error handling setup for transaction failure
